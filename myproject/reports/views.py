@@ -12,8 +12,8 @@ class RequestReportView(View):
         # Create a new report entry
         report = Report.objects.create(user=request.user)
         
-        # Trigger the background task to generate and send the report
+       
         generate_and_send_report.delay(report.id)
         
-        # Return a response indicating the report generation has started
+       
         return JsonResponse({'status': 'Report generation started', 'report_id': report.id})
